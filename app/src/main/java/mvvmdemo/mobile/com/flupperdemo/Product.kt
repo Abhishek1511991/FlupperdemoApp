@@ -1,4 +1,6 @@
 package mvvmdemo.mobile.com.flupperdemo
 
-class Product {
+import androidx.appcompat.app.AppCompatActivity
+
+class Product:AppCompatActivity(){
 }
