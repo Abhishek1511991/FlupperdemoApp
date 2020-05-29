@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--xmlns:bind="http://schemas.android.com/apk/res-auto"-->
+
+    <data>
+        <variable
+            name="product"
+            type="mvvmdemo.mobile.com.flupperdemo.model.Product" />
+
+        <variable
+            name="itemClickListener"
+            type="mvvmdemo.mobile.com.flupperdemo.interfaces.CustomClickListener" />
+    </data>
+
+
+    <mvvmdemo.mobile.com.flupperdemo.utility.SwipeRevealLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_gravity="center_vertical"
+        app:dragFromEdge="right">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|end"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/info_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/icon_delete"
+                    android:text="Info"/>
+
+                <ImageButton
+                    android:id="@+id/edit_button"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:srcCompat="@drawable/edit"
+                    android:text="Edit"/>
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding_10"
+                android:background="@android:color/transparent"
+                android:elevation="@dimen/padding_10"
+                tools:ignore="UnusedAttribute">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_10"
+                    android:background="@android:color/white">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/product_photo_layout"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:onClick="@{() -> itemClickListener.cardClicked(product)}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/product_photo"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/image_place_holder"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
+
+                        <!--bind:avatar="@{product.product_photo}"-->
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_marginStart="@dimen/padding_5"
+                        android:layout_marginEnd="@dimen/padding_3"
+                        android:maxLines="1"
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/textSize_16sp"
+                        android:text="@{product.name}"
+                        android:textStyle="bold"
+                        android:ellipsize="end"
+                        android:gravity="left"
+                        android:padding="@dimen/padding_3"
+                        android:id="@+id/product_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/product_photo_layout"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:text="@{product.desc}"
+                        android:paddingStart="@dimen/padding_5"
+                        android:paddingEnd="@dimen/padding_3"
+                        android:maxLines="5"
+                        android:ellipsize="end"
+                        android:padding="@dimen/padding_3"
+                        android:textSize="@dimen/textSize_14sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:textStyle="italic"
+                        android:id="@+id/product_description"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/product_photo_layout"
+                        app:layout_constraintTop_toBottomOf="@+id/product_title" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:text="@{product.reguler_price}"
+                        android:textSize="@dimen/textSize_15sp"
+                        android:paddingStart="@dimen/padding_5"
+                        android:paddingEnd="@dimen/padding_3"
+                        android:maxLines="1"
+                        android:textColor="@android:color/holo_red_light"
+                        android:ellipsize="end"
+                        android:id="@+id/product_regularPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toEndOf="@+id/product_photo_layout"
+                        app:layout_constraintTop_toBottomOf="@+id/product_description" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:text="@{product.sale_price}"
+                        android:paddingStart="@dimen/padding_5"
+                        android:textSize="@dimen/textSize_15sp"
+                        android:textStyle="bold"
+                        android:paddingEnd="@dimen/padding_3"
+                        android:id="@+id/product_salePrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="@android:color/holo_green_dark"
+                        app:layout_constraintStart_toEndOf="@+id/product_regularPrice"
+                        app:layout_constraintTop_toBottomOf="@+id/product_description" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </FrameLayout>
+    </mvvmdemo.mobile.com.flupperdemo.utility.SwipeRevealLayout>
+
+
+
+
+</layout>
+

@@ -1,0 +1,58 @@
+{
+    "Products": [
+      {
+        "id":1,
+        "name":"iphone X",
+        "desc":"The iPhone X was Apple's flagship 10th anniversary iPhone featuring a 5.8-inch OLED display, facial recognition and 3D camera functionality, a glass body, and an A11 Bionic processor. ",
+        "reguler_price": "5000",
+        "sale_price":"4500",
+        "product_photo":"https://img.gkbcdn.com/s3/p/2019-11-22/apple-iphone-x-64gb-gray--used--20191122085301167.jpg",
+        "colors": [
+                      {"color": 1},
+                      {"color": 2}
+                    ],
+        "stores":
+                  [
+                    {"store_name": "Lucknow"},
+                    {"store_name": "Delhi"},
+                    {"store_name": "Noida"}
+                  ]
+      },
+      {
+        "id":2,
+        "name":"Samsung Galaxy m30",
+        "desc":"The Galaxy M30 is third smartphone under the series. ",
+        "reguler_price": "1000",
+        "sale_price":"900",
+        "product_photo":"https://images.samsung.com/is/image/samsung/in-galaxy-m30s-m307f-6gb-sm-m307fzkgins-frontblack-183175104?$PD_GALLERY_L_SHOP_JPG",
+        "colors": [
+          {"color": 1},
+          {"color": 2}
+        ],
+        "stores":
+        [
+          {"store_name": "Lucknow"},
+          {"store_name": "Delhi"},
+          {"store_name": "Noida"}
+        ]
+      },
+      {
+        "id":3,
+        "name":"Tala Salt",
+        "desc":"Tata Salt was launched in 1983 by Tata Chemicals as India's first packaged iodised salt brand.",
+        "reguler_price": "20",
+        "sale_price":"15",
+        "product_photo":"https://images-na.ssl-images-amazon.com/images/I/61j0wPsKqoL._SX425_.jpg",
+        "colors": [
+          {"color": 1},
+          {"color": 2}
+        ],
+        "stores":
+        [
+          {"store_name": "Lucknow"},
+          {"store_name": "Delhi"},
+          {"store_name": "Noida"}
+        ]
+      }
+    ]
+}
