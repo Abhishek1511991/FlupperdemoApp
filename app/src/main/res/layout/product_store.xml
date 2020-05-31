@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="store"
+            type="mvvmdemo.mobile.com.flupperdemo.model.Store" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_margin="@dimen/padding_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="80dp"
+            android:layout_height="@dimen/dimens_20"
+            android:textAllCaps="false"
+            android:background="@drawable/ic_launcher_background"
+            android:elevation="0dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="@dimen/textSize_10sp"
+            android:text="@{store.store_name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:stateListAnimator="@null"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

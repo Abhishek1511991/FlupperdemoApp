@@ -7,29 +7,29 @@ import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
 @Entity
-data class Colors (
+data class Store (
 
-	@SerializedName("color")
-	@ColumnInfo(name = "product_color_code")
-	val color : Int
+	@SerializedName("store_name")
+	@ColumnInfo(name = "store_name")
+	val store_name : String
 ) : Parcelable {
-	constructor(parcel: Parcel) : this(parcel.readInt()) {
+	constructor(parcel: Parcel) : this(parcel.readString()!!) {
 	}
 
 	override fun writeToParcel(parcel: Parcel, flags: Int) {
-		parcel.writeInt(color)
+		parcel.writeString(store_name)
 	}
 
 	override fun describeContents(): Int {
 		return 0
 	}
 
-	companion object CREATOR : Parcelable.Creator<Colors> {
-		override fun createFromParcel(parcel: Parcel): Colors {
-			return Colors(parcel)
+	companion object CREATOR : Parcelable.Creator<Store> {
+		override fun createFromParcel(parcel: Parcel): Store {
+			return Store(parcel)
 		}
 
-		override fun newArray(size: Int): Array<Colors?> {
+		override fun newArray(size: Int): Array<Store?> {
 			return arrayOfNulls(size)
 		}
 	}

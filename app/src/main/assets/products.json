@@ -8,14 +8,14 @@
         "sale_price":"4500",
         "product_photo":"https://img.gkbcdn.com/s3/p/2019-11-22/apple-iphone-x-64gb-gray--used--20191122085301167.jpg",
         "colors": [
-                      {"color": 1},
-                      {"color": 2}
+                      {"color": -14654801},
+                      {"color": -7551917}
                     ],
         "stores":
                   [
-                    {"store_name": "Lucknow"},
-                    {"store_name": "Delhi"},
-                    {"store_name": "Noida"}
+                    {"store_name": "Flipkart"},
+                    {"store_name": "Amazon"},
+                    {"store_name": "Snapdeal"}
                   ]
       },
       {
@@ -26,32 +26,30 @@
         "sale_price":"900",
         "product_photo":"https://images.samsung.com/is/image/samsung/in-galaxy-m30s-m307f-6gb-sm-m307fzkgins-frontblack-183175104?$PD_GALLERY_L_SHOP_JPG",
         "colors": [
-          {"color": 1},
-          {"color": 2}
+          {"color": -14654801},
+          {"color": -7551917}
         ],
         "stores":
         [
-          {"store_name": "Lucknow"},
-          {"store_name": "Delhi"},
-          {"store_name": "Noida"}
+          {"store_name": "Flipkart"},
+          {"store_name": "Amazon"}
         ]
       },
       {
         "id":3,
-        "name":"Tala Salt",
-        "desc":"Tata Salt was launched in 1983 by Tata Chemicals as India's first packaged iodised salt brand.",
-        "reguler_price": "20",
-        "sale_price":"15",
-        "product_photo":"https://images-na.ssl-images-amazon.com/images/I/61j0wPsKqoL._SX425_.jpg",
+        "name":"Samsung Smart TV",
+        "desc":"The new Samsung Smart TV is ready to wow you in a new way.",
+        "reguler_price": "25000",
+        "sale_price":"20000",
+        "product_photo":"https://xvp.akamaized.net/assets/public/vpn-software/smart-tv-vpn@2x-b17f66be14ccfd4c71ee8b5e5e305bd1c3a82032b33a3cfd0f51710a03d7f3ef.png",
         "colors": [
-          {"color": 1},
-          {"color": 2}
+          {"color": -14654801},
+          {"color": -7551917}
         ],
         "stores":
         [
-          {"store_name": "Lucknow"},
-          {"store_name": "Delhi"},
-          {"store_name": "Noida"}
+          {"store_name": "Flipkart"},
+          {"store_name": "Paytm"}
         ]
       }
     ]

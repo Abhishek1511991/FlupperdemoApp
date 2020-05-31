@@ -14,6 +14,14 @@
         <variable
             name="itemClickListener"
             type="mvvmdemo.mobile.com.flupperdemo.interfaces.CustomClickListener" />
+
+        <variable
+            name="colorListAdapter"
+            type="mvvmdemo.mobile.com.flupperdemo.adapter.ProductColorAdapter" />
+
+        <variable
+            name="storeListAdapter"
+            type="mvvmdemo.mobile.com.flupperdemo.adapter.ProductStoreAdapter" />
     </data>
 
 
@@ -34,7 +42,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/product_photo_layout"
                 android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_height="match_parent"
                 android:onClick="@{() -> itemClickListener.cardClicked(product)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -44,8 +52,8 @@
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/product_photo"
                     android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:scaleType="centerCrop"
+                    android:layout_height="100dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/image_place_holder"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -62,15 +70,16 @@
                 android:layout_marginEnd="@dimen/padding_3"
                 android:maxLines="1"
                 android:textColor="@android:color/black"
-                android:textSize="@dimen/textSize_16sp"
+                android:textSize="@dimen/textSize_14sp"
                 android:text="@{product.name}"
                 android:textStyle="bold"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:padding="@dimen/padding_3"
                 android:id="@+id/product_title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/product_photo_layout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,7 +90,7 @@
                 android:maxLines="5"
                 android:ellipsize="end"
                 android:padding="@dimen/padding_3"
-                android:textSize="@dimen/textSize_14sp"
+                android:textSize="@dimen/textSize_10sp"
                 android:textColor="@android:color/darker_gray"
                 android:textStyle="italic"
                 android:id="@+id/product_description"
@@ -119,6 +128,33 @@
                 android:textColor="@android:color/holo_green_dark"
                 app:layout_constraintStart_toEndOf="@+id/product_regularPrice"
                 app:layout_constraintTop_toBottomOf="@+id/product_description" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/colorRecyclerView"
+                android:adapter="@{colorListAdapter}"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/product_photo_layout"
+                app:layout_constraintTop_toBottomOf="@+id/product_salePrice"
+                tools:listitem="@layout/product_color"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/storeRecyclerView"
+                android:adapter="@{storeListAdapter}"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/product_photo_layout"
+                app:layout_constraintTop_toBottomOf="@+id/colorRecyclerView"
+                tools:listitem="@layout/product_store"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

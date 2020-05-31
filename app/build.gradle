@@ -60,10 +60,6 @@ dependencies {
 
 
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-/*    // lifecycle
-    implementation "androidx.arch.lifecycle:extensions:1.1.1"
-    annotationProcessor "androidx.arch.lifecycle:compiler:1.1.1"*/
-    // glide for image
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
@@ -78,6 +74,7 @@ dependencies {
     implementation "androidx.room:room-runtime:2.2.5"
     implementation 'com.google.android.material:material:1.1.0'
     annotationProcessor "androidx.room:room-compiler:2.2.5"
+    implementation 'petrov.kristiyan:colorpicker-library:1.1.10'
 
 
 

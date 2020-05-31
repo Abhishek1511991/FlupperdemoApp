@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="product"
+            type="mvvmdemo.mobile.com.flupperdemo.model.Product" />
+
+        <variable
+            name="clickHandler"
+            type="mvvmdemo.mobile.com.flupperdemo.AddProduct.AddProductActivityClickHandlers" />
+
+        <variable
+            name="colorListAdapter"
+            type="mvvmdemo.mobile.com.flupperdemo.adapter.ProductColorAdapter" />
+
+        <variable
+            name="storeListAdapter"
+            type="mvvmdemo.mobile.com.flupperdemo.adapter.ProductStoreAdapter" />
+
+        <import type="mvvmdemo.mobile.com.flupperdemo.utility.CheckResult"/>
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".AddProduct">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/layout_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_margin="@dimen/padding_10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/product_image"
+                        android:src="@{product.product_photo}"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:background="@drawable/img"
+                        android:layout_centerInParent="true"
+                        android:scaleType="fitXY" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/add_photo"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:onClick="@{clickHandler::clickToAddPhoto}"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/add_pic" />
+
+                </RelativeLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInput_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_image">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/product_name"
+                        android:maxLength="50"
+                        android:text="@{product.name}"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInput_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInput_name">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/product_description"
+                        android:text="@{product.desc}"
+                        android:maxLength="200"
+                        android:maxLines="5"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInput_regularPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInput_description">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/regularPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/product_price"
+                        android:text="@{product.reguler_price}"
+                        android:inputType="numberDecimal" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInput_salesPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInput_regularPrice">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/salesPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/discounted_price"
+                        android:text="@{product.sale_price}"
+                        android:inputType="numberDecimal" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <RelativeLayout
+                    android:id="@+id/chooseColorLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textInput_salesPrice">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/color_picker"
+                        android:text="@string/select_color"
+                        android:textAllCaps="false"
+                        android:background="@android:color/holo_orange_dark"
+                        android:backgroundTint="@color/colorAccent"
+                        android:textColor="@android:color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_3"
+                        android:onClick="@{clickHandler::clickToChooseColor}"
+                        android:layout_margin="@dimen/padding_10"
+                        tools:targetApi="lollipop" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/colorRecyclerView"
+                        android:adapter="@{colorListAdapter}"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/color_picker"
+                        tools:listitem="@layout/product_color"/>
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/chooseStoreLocaterLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/padding_10"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/chooseColorLayout">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:textAllCaps="false"
+                        android:id="@+id/chooseStoreLocatorButton"
+                        android:text="@string/select_city"
+                        android:background="@android:color/holo_orange_dark"
+                        android:backgroundTint="@color/colorAccent"
+                        android:textColor="@android:color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_3"
+                        android:onClick="@{clickHandler::clickToAddProductStoreName}"
+                        android:layout_margin="@dimen/padding_10"
+                        tools:targetApi="lollipop" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/storeRecyclerView"
+                        android:adapter="@{storeListAdapter}"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:spanCount="2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/chooseStoreLocatorButton"
+                        tools:listitem="@layout/product_store"/>
+
+                </RelativeLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/save"
+                    android:layout_marginBottom="@dimen/padding_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="@dimen/padding_10"
+                    android:layout_marginLeft="@dimen/padding_10"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="@dimen/padding_10"
+                    android:layout_marginRight="@dimen/padding_10"
+                    android:theme="@style/BlueButton"
+                    android:text="@string/save"
+                    android:onClick="@{clickHandler::OnSaveClicked}"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/chooseStoreLocaterLayout"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</layout>
+

@@ -22,4 +22,21 @@
         <item name="android:windowExitAnimation">@anim/slide_down</item>
     </style>
 
+    <style name="BlueButton" parent="@android:style/Widget.Button">
+        <item name="colorButtonNormal">@drawable/enable_disable</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="DarkDialog" parent="Theme.MaterialComponents.DayNight.Dialog" />
+
+
+    <style name="action_button_bs">
+        <item name="android:textColor">#3B73CC</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
 </resources>

@@ -22,5 +22,22 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="@dimen/dimens_40"
+            android:layout_height="@dimen/dimens_40"
+            android:layout_margin="@dimen/padding_10"
+            android:src="@drawable/add_product"
+            app:elevation="1dp"
+            app:borderWidth="0dp"
+            android:background="@android:color/transparent"
+            app:fabCustomSize="@dimen/dimens_40"
+            app:maxImageSize="@dimen/dimens_40"
+            app:pressedTranslationZ="1dp"
+            android:onClick="addProduct"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

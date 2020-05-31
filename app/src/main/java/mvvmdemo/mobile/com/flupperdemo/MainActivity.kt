@@ -1,7 +1,9 @@
 package mvvmdemo.mobile.com.flupperdemo
 
+import android.content.Intent
 import android.graphics.Canvas
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
@@ -32,7 +34,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        activityMainBinding=DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
+        activityMainBinding=DataBindingUtil.setContentView(this,R.layout.activity_main)
+        supportActionBar?.setTitle(getString(R.string.product_dashboard));
         val recyclerView = activityMainBinding?.viewEmployees
         recyclerView?.layoutManager = LinearLayoutManager(this)
         recyclerView?.setHasFixedSize(true)
@@ -57,21 +60,26 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onLeftClicked(position: Int) {
-                Toast.makeText(this@MainActivity,"Left Click",Toast.LENGTH_SHORT).show()
+
+                val bundle=Bundle()
+                bundle.putParcelable("data",productDataAdapter?.productList?.get(position))
+                startActivity(Intent(this@MainActivity,AddProduct::class.java).also {
+                    it.flags=Intent.FLAG_ACTIVITY_NEW_TASK
+                    it.putExtras(bundle)
+
+                })
             }
         })
 
         val itemTouchhelper = ItemTouchHelper(swipeController!!)
         itemTouchhelper.attachToRecyclerView(recyclerView)
 
-        recyclerView.addItemDecoration(object : ItemDecoration() {
+        recyclerView?.addItemDecoration(object : ItemDecoration() {
             override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
                 super.onDraw(c, parent, state)
                 swipeController!!.onDraw(c)
             }
         })
-
-
 
         getAllProduct()
     }
@@ -86,5 +94,13 @@ class MainActivity : AppCompatActivity() {
                 }
             })
     }
+
+    fun addProduct(view: View) {
+        startActivity(Intent(this@MainActivity,AddProduct::class.java).also {
+            it.flags=Intent.FLAG_ACTIVITY_NEW_TASK
+        })
+
+    }
+
 
 }

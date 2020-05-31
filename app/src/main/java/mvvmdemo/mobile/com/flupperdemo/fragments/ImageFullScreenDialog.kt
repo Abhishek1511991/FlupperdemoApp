@@ -2,17 +2,23 @@ package mvvmdemo.mobile.com.flupperdemo.fragments
 
 
 import android.app.Dialog
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.URLUtil
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
 import mvvmdemo.mobile.com.flupperdemo.R
+import mvvmdemo.mobile.com.flupperdemo.utility.TypeConverter
+import java.io.File
 
 
 class ImageFullScreenDialog :DialogFragment()
@@ -77,14 +83,36 @@ class ImageFullScreenDialog :DialogFragment()
         imageUrl=arguments?.getString("url")
 
         context?.let {
-            Glide.with(it)
-                .load(Uri.parse(imageUrl))
-                .centerCrop()
-                .error(R.drawable.image_place_holder)
-                .override(200, 200)
-                .into(imageView)
+
+            if(URLUtil.isValidUrl(imageUrl))
+            {
+                Glide.with(it)
+                    .load(Uri.parse(imageUrl))
+                    .placeholder(R.drawable.shimmer)
+                    .centerCrop()
+                    .error(R.drawable.error_img)
+                    .override(200, 200)
+                    .into(imageView)
+            }
+            else{
+                Glide.with(it)
+                    .load(File(imageUrl))
+                    .placeholder(R.drawable.shimmer)
+                    .centerCrop()
+                    .error(R.drawable.error_img)
+                    .override(200, 200)
+                    .into(imageView)
+            }
+
+
         }
 
 
+
+
     }
+
+
+
+
 }

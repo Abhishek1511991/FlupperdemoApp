@@ -8,10 +8,13 @@
     <dimen name="textSize_16sp">16sp</dimen>
     <dimen name="textSize_15sp">15sp</dimen>
     <dimen name="textSize_14sp">14sp</dimen>
+    <dimen name="textSize_10sp">10sp</dimen>
 
 
-    <dimen name="ic_delete">30dp</dimen>
     <dimen name="thumbnail">110dp</dimen>
+    <dimen name="dimens_40">40dp</dimen>
+    <dimen name="dimens_30">30dp</dimen>
+    <dimen name="dimens_20">20dp</dimen>
 
 
 </resources>

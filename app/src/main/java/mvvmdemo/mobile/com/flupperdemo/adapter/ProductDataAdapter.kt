@@ -5,14 +5,17 @@ import android.graphics.Paint
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
+import android.webkit.URLUtil
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import mvvmdemo.mobile.com.flupperdemo.R
 import mvvmdemo.mobile.com.flupperdemo.databinding.ProductListBinding
 import mvvmdemo.mobile.com.flupperdemo.interfaces.CustomClickListener
+import mvvmdemo.mobile.com.flupperdemo.model.Colors
 import mvvmdemo.mobile.com.flupperdemo.model.Product
+import mvvmdemo.mobile.com.flupperdemo.model.Store
+import java.io.File
 
 class ProductDataAdapter(mContext: Context, productList:ArrayList<Product>):RecyclerView.Adapter<ProductDataAdapter.ProductViewHolder>(),
     CustomClickListener {
@@ -35,7 +38,7 @@ class ProductDataAdapter(mContext: Context, productList:ArrayList<Product>):Recy
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-        return ProductViewHolder(mContext,DataBindingUtil.inflate<ProductListBinding>(LayoutInflater.from(parent.getContext()),
+        return ProductViewHolder(mContext,DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
             R.layout.product_list, parent, false))
     }
 
@@ -93,25 +96,45 @@ class ProductDataAdapter(mContext: Context, productList:ArrayList<Product>):Recy
             dataBindingUtil?.setProduct(product)
             dataBindingUtil?.executePendingBindings()
             dataBindingUtil.productRegularPrice
-                .setPaintFlags(
-                    dataBindingUtil?.productRegularPrice.getPaintFlags()
-                            or Paint.STRIKE_THRU_TEXT_FLAG
-                )
+                .setPaintFlags(dataBindingUtil?.productRegularPrice.getPaintFlags()
+                            or Paint.STRIKE_THRU_TEXT_FLAG)
 
 
-            /*dataBindingUtil?.productDescription.text=product.desc
-            dataBindingUtil?.productRegularPrice.text=product.reguler_price.toString()
-            dataBindingUtil?.productSalePrice.text=product.sale_price.toString()
-            dataBindingUtil?.productTitle.text=product.name*/
+            if(URLUtil.isValidUrl(product.product_photo))
+            {
+                Glide.with(mContext)
+                    .load(Uri.parse(product.product_photo))
+                    .placeholder(R.drawable.shimmer)
+                    .centerCrop()
+                    .error(R.drawable.error_img)
+                    .override(200, 200)
+                    .into(
+                        dataBindingUtil?.productPhoto
+                    )
+            }
+            else{
+                Glide.with(mContext)
+                    .load(File(product.product_photo))
+                    .placeholder(R.drawable.shimmer)
+                    .centerCrop()
+                    .error(R.drawable.error_img)
+                    .override(200, 200)
+                    .into(
+                        dataBindingUtil?.productPhoto
+                    )
+            }
 
-            Glide.with(mContext)
-                .load(Uri.parse(product.product_photo))
-                .centerCrop()
-                .error(R.drawable.image_place_holder)
-                .override(200, 200)
-                .into(
-                    dataBindingUtil?.productPhoto
-                )
+
+
+
+            var colorArray=if(product?.colors?.size>0) product.colors else ArrayList<Colors>()
+
+            val productColorAdapter=ProductColorAdapter(colorArray)
+            dataBindingUtil.setColorListAdapter(productColorAdapter)
+
+            var storeArray=if(product?.stores?.size>0) product.stores else ArrayList<Store>()
+            val productStoreAdapter=ProductStoreAdapter(storeArray)
+            dataBindingUtil.setStoreListAdapter(productStoreAdapter)
 
 
         }

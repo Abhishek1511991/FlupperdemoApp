@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -12,17 +13,19 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import mvvmdemo.mobile.com.flupperdemo.model.Product
 import mvvmdemo.mobile.com.flupperdemo.model.ProductsList
+import mvvmdemo.mobile.com.flupperdemo.utility.TypeConverter
 import java.io.IOException
 import java.util.concurrent.Executors
 
 @Database(entities = arrayOf(Product::class),exportSchema = false, version = 2)
+@TypeConverters(TypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun DataDao(): DataDao
 
     //https://gabrieltanner.org/blog/android-room
     companion object {
 
-        @Volatile private var instance: AppDatabase? = null
+        @Volatile public var instance: AppDatabase? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context)= instance ?: synchronized(LOCK){
